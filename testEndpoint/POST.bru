@@ -1,0 +1,23 @@
+meta {
+  name: POST
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:3000/
+  body: json
+  auth: inherit
+}
+
+body:json {
+    {
+      "name": "Enzo Vera",
+      "username": "EnzoVera",
+      "email": "contacto@enzovera.dev"
+    }
+}
+
+settings {
+  encodeUrl: true
+}
