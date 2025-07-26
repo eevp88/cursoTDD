@@ -4,12 +4,15 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "bun run --watch index.ts"
+    "dev": "bun run --watch index.ts",
+    "test": "jest --watchAll"
   },
   "devDependencies": {
     "@types/axios": "^0.14.4",
     "@types/bun": "latest",
-    "@types/express": "^5.0.3"
+    "@types/express": "^5.0.3",
+    "@types/jest": "^30.0.0",
+    "jest": "^30.0.5"
   },
   "peerDependencies": {
     "typescript": "^5"
@@ -17,5 +20,8 @@
   "dependencies": {
     "axios": "^1.11.0",
     "express": "^5.1.0"
-  }
+  },
+  "trustedDependencies": [
+    "unrs-resolver"
+  ]
 }
