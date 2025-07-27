@@ -1,6 +1,13 @@
+/**
+ * Tests for postHandlers endpoints.
+ * Validates post creation and user existence logic.
+ */
 import { postHandlers } from "./index";
 describe("Endpoints", () => {
   describe("post", () => {
+    /**
+     * Should create a post if userId exists.
+     */
     it("should create", async () => {
       const mockUser = [{ id: 1 }, { id: 2 }];
       const post = {
@@ -34,6 +41,9 @@ describe("Endpoints", () => {
       ]);
     });
 
+    /**
+     * Should not create a post if userId does not exist.
+     */
     it("should not create if userId does not exist", async () => {
       const mockUser = [{ id: 1 }, { id: 2 }];
       const post = {
