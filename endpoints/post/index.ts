@@ -1,7 +1,9 @@
+
 /**
- * Handlers for post endpoints. Uses injected axios for HTTP requests.
- * @param axios - HTTP client instance
- * @returns Object with post-related route handlers
+ * Returns handlers for post endpoints.
+ * @param {object} params - The dependencies for the handlers.
+ * @param {import('axios').AxiosInstance} params.axios - HTTP client instance.
+ * @returns {{ post: function(Request, Response): Promise<void> }} Object with post handler.
  */
 export const postHandlers = ({ axios }) => ({
   /**

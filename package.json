@@ -5,14 +5,20 @@
   "private": true,
   "scripts": {
     "dev": "bun run --watch index.ts",
-    "test": "jest --watchAll"
+    "test": "jest --watchAll",
+    "docs": "jsdoc -c jsdoc.config.json"
   },
   "devDependencies": {
+    "@babel/core": "^7.28.0",
+    "@babel/preset-typescript": "^7.27.1",
     "@types/axios": "^0.14.4",
     "@types/bun": "latest",
     "@types/express": "^5.0.3",
     "@types/jest": "^30.0.0",
-    "jest": "^30.0.5"
+    "jest": "^30.0.5",
+    "jsdoc": "^4.0.4",
+    "jsdoc-babel": "^0.5.0",
+    "jsdoc-tsimport-plugin": "^1.0.5"
   },
   "peerDependencies": {
     "typescript": "^5"

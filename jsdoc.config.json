@@ -1,0 +1,12 @@
+{
+  "source": {
+    "include": ["./endpoints/post", "./middleware"],
+    "includePattern": ".+\\.(js|ts)$"
+  },
+  "opts": {
+    "destination": "./docs",
+    "recurse": true
+  },
+  "plugins": ["node_modules/jsdoc-tsimport-plugin"]
+}
+
