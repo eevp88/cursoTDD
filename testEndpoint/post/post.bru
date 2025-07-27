@@ -1,0 +1,27 @@
+meta {
+  name: post
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:3000/
+  body: json
+  auth: inherit
+}
+
+headers {
+  user_id: 3
+}
+
+body:json {
+  {
+    "userId": 13,
+    "title": "Titulo",
+    "body" : "cuerpo de post"
+  }
+}
+
+settings {
+  encodeUrl: true
+}

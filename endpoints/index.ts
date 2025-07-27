@@ -1,1 +1,1 @@
-export { handlers as users } from "./users";
+export { postHandlers as post } from "./post";
