@@ -1,3 +1,4 @@
+import type { Request, Response, NextFunction } from "express";
 /**
  * Middleware to authenticate user by user_id header.
  * Allows access only if user_id is 1, otherwise denies with 403.
@@ -5,7 +6,7 @@
  * @param res - Response object with sendStatus method
  * @param next - Next middleware function
  */
-export const authenticate = (req, res, next) => {
+export const authenticate = (req: Request, res: Response, next: NextFunction) : void | Response => {
   const userId = req.header("user_id");
   if (userId !== '1') {
     return res.sendStatus(403);
