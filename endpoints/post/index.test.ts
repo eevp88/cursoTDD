@@ -1,75 +1,36 @@
-/**
- * Tests for postHandlers endpoints.
- * Validates post creation and user existence logic.
- */
-import { postHandlers } from "./index";
-describe("Endpoints", () => {
-  describe("post", () => {
-    /**
-     * Should create a post if userId exists.
-     */
-    it("should create", async () => {
-      const mockUser = [{ id: 1 }, { id: 2 }];
-      const post = {
-        userId: 1,
-        id: 1,
-        title: "Titulo",
-        body: "Cuerpo del post",
-      };
+import request from "supertest";
+import { app }  from "../../index";
+//import { request } from "express";
 
-      const req = {
-        body: post,
-      };
+describe("Server", () => {
+  describe("Endpoints", () => {
+    describe("Post POST", () => {});
+    it("create a new Post", async () => {
+      const response = await request(app)
+        .post("/")
+        .send({ userId: 5 })
+        .set("user_id", '1')
+        .set("Content-Type", "application/json");
+      
+      expect(response.statusCode).toEqual(201);
+      expect(response.body.userId).toEqual(5)
+      expect(response.body).toHaveProperty("id");
 
-      const res = {
-        status: jest.fn().mockReturnThis(),
-        send: jest.fn(),
-      };
-      const axios = {
-        get: jest.fn().mockResolvedValue({ data: mockUser }),
-        post: jest.fn().mockResolvedValue({ data: { id: 1000 } }),
-      };
-
-      await postHandlers({ axios }).post(req, res);
-      expect(res.status.mock.calls).toEqual([[201]]);
-      expect(res.send.mock.calls).toEqual([[{ id: 1000 }]]);
-      expect(axios.get.mock.calls).toEqual([
-        ["https://jsonplaceholder.typicode.com/users"],
-      ]);
-      expect(axios.post.mock.calls).toEqual([
-        ["https://jsonplaceholder.typicode.com/posts", post],
-      ]);
+      //console.log(response); // Aquí puedes ver la respuesta
+      // Puedes agregar expect(response.status).toBe(201) o lo que corresponda
     });
 
-    /**
-     * Should not create a post if userId does not exist.
-     */
-    it("should not create if userId does not exist", async () => {
-      const mockUser = [{ id: 1 }, { id: 2 }];
-      const post = {
-        userId: 3,
-        id: 1,
-        title: "Titulo",
-        body: "Cuerpo del post",
-      };
-
-      const req = {
-        body: post,
-      };
-
-      const res = {
-        status: jest.fn().mockReturnThis(),
-        send: jest.fn(),
-        sendStatus: jest.fn(),
-      };
-      const axios = {
-        get: jest.fn().mockResolvedValue({ data: mockUser }),
-        post: jest.fn().mockResolvedValue({ data: { id: 1000 } }),
-      };
-
-      await postHandlers({ axios }).post(req, res);
-      expect(axios.post.mock.calls).toEqual([]);
-      expect(res.sendStatus.mock.calls).toEqual([[400]]);
+    it("does not create a new Post", async () => {
+      const response = await request(app)
+        .post("/")
+        .send({ userId: 100 })
+        .set("user_id", '1')
+        .set("Content-Type", "application/json");
+      
+      expect(response.statusCode).toEqual(400);
+      //expect(response.body.userId).toEqual(5)
+      //expect(response.body).toHaveProperty("id");
     });
+
   });
 });

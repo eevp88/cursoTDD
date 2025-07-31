@@ -1,4 +1,3 @@
-
 /**
  * Tests for the authenticate middleware.
  * Checks behavior based on the value returned by req.header("user_id").
@@ -12,13 +11,14 @@ describe("Middlewares", () => {
      */
     it("Should have id 1", () => {
       const req = {
-        header: jest.fn().mockReturnValue(1),
+        header: jest.fn().mockReturnValue('1'),
       };
       const res = {
         sendStatus: jest.fn(),
       };
       const next = jest.fn();
       authenticate(req, res, next);
+      //console.log(res.sendStatus.mock.calls);
       expect(req.header.mock.calls).toEqual([["user_id"]]);
       expect(res.sendStatus.mock.calls).toEqual([]);
       expect(next.mock.calls).toEqual([[]]);
@@ -28,7 +28,7 @@ describe("Middlewares", () => {
      */
     it("Should fail if user is not one", () => {
       const req = {
-        header: jest.fn().mockReturnValue(2),
+        header: jest.fn().mockReturnValue('2'),
       };
       const res = {
         sendStatus: jest.fn(),

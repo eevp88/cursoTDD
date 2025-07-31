@@ -3,7 +3,7 @@ import config from "./config";
 import axios from "axios";
 import { post } from "./endpoints";
 import { authenticate } from "./middleware";
-const app = express();
+export const app = express();
 const port = config.SERVER.port || 3000;
 
 app.use(express.json());
@@ -18,3 +18,5 @@ app.post("/", authenticate, postHandlers.post);
 app.listen(port, () => {
   console.log(`Server is up and running on port ${port}`);
 });
+
+export default app;
