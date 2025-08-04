@@ -1,7 +1,12 @@
 # cursoTDD
 
-curso de TDD en bun y javascript que contiene los siguientes  temas
+curso de TDD en bun y javascript => TypeScript
 
-1. Test unitarios 
-2. Test de integracion
-3. Recomendacion de Arquitecturas
+Trata los siguientes temas
+
+1. crear Test Unitarios (main)
+2. desarrollo dirigido por test (testFirst)
+3. desarrollo de Test de integracion
+4. la importancia de inyeccion de dependencias
+5. pasar de Javascript a Typescript
+6. generear docuementacion con typedoc
