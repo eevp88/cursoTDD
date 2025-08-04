@@ -1,4 +1,4 @@
-import request from "supertest";
+import request  from "supertest";
 import { app }  from "../../index";
 //import { request } from "express";
 
@@ -6,7 +6,7 @@ describe("Server", () => {
   describe("Endpoints", () => {
     describe("Post POST", () => {});
     it("create a new Post", async () => {
-      const response = await request(app)
+      const response : request.Response = await request(app)
         .post("/")
         .send({ userId: 5 })
         .set("user_id", '1')
@@ -21,7 +21,7 @@ describe("Server", () => {
     });
 
     it("does not create a new Post", async () => {
-      const response = await request(app)
+      const response : request.Response = await request(app)
         .post("/")
         .send({ userId: 100 })
         .set("user_id", '1')

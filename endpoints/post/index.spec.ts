@@ -3,6 +3,9 @@
  * Validates post creation and user existence logic.
  */
 import { postHandlers } from "./index";
+import type { Request, Response } from "express";
+import type { AxiosInstance } from "axios";
+import { mock } from "jest-mock-extended";
 describe("Endpoints", () => {
   describe("post", () => {
     /**
@@ -17,19 +20,16 @@ describe("Endpoints", () => {
         body: "Cuerpo del post",
       };
 
-      const req = {
-        body: post,
-      };
+      const req = mock<Request>();
+      req.body = post;
 
-      const res = {
-        status: jest.fn().mockReturnThis(),
-        send: jest.fn(),
-      };
-      const axios = {
-        get: jest.fn().mockResolvedValue({ data: mockUser }),
-        post: jest.fn().mockResolvedValue({ data: { id: 1000 } }),
-      };
+      const res = mock<Response>();
+      res.status.mockReturnThis();
 
+      const axios =mock<AxiosInstance>();
+      axios.get.mockResolvedValue({ data: mockUser });
+      axios.post.mockResolvedValue({ data: { id: 1000 } });
+      
       await postHandlers({ axios }).post(req, res);
       expect(res.status.mock.calls).toEqual([[201]]);
       expect(res.send.mock.calls).toEqual([[{ id: 1000 }]]);
@@ -53,19 +53,17 @@ describe("Endpoints", () => {
         body: "Cuerpo del post",
       };
 
-      const req = {
-        body: post,
-      };
+      const req = mock<Request>();
+      req.body = post
+      
+      const res = mock<Response>();
+      res.status.mockReturnThis();
+      //res.send = jest.fn();
+      (res.sendStatus as any) = jest.fn();
 
-      const res = {
-        status: jest.fn().mockReturnThis(),
-        send: jest.fn(),
-        sendStatus: jest.fn(),
-      };
-      const axios = {
-        get: jest.fn().mockResolvedValue({ data: mockUser }),
-        post: jest.fn().mockResolvedValue({ data: { id: 1000 } }),
-      };
+      const axios = mock<AxiosInstance>();
+      axios.get.mockResolvedValue({ data: mockUser });
+      axios.post.mockResolvedValue({ data: { id: 1000 } });
 
       await postHandlers({ axios }).post(req, res);
       expect(axios.post.mock.calls).toEqual([]);

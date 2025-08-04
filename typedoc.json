@@ -1,0 +1,9 @@
+{
+  "entryPoints": ["./endpoints", "./middleware"],
+  "out": "docs",
+  "exclude": ["**/*.test.ts", "**/*.spec.ts"],
+  "excludePrivate": true,
+  "excludeInternal": true,
+  "includeVersion": true,
+  "tsconfig": "./tsconfig.json"
+}
